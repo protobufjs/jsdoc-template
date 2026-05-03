@@ -1,0 +1,20 @@
+<?js
+const data = obj;
+const self = this;
+?>
+
+<?js if (data.kind === 'package') { ?>
+    <h3><?js= data.name ?> <?js= data.version ?></h3>
+<?js } ?>
+
+<?js if (data.repo) { ?>
+    <div class="repo-actionbar">
+        <a class="gh-button" href="<?js= data.repo ?>">View on GitHub</a>
+    </div>
+<?js } ?>
+
+<?js if (data.readme) { ?>
+    <section>
+        <article class="readme"><?js= data.readme ?></article>
+    </section>
+<?js } ?>

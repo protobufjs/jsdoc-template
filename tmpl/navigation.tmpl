@@ -1,0 +1,50 @@
+<?js
+const self = this;
+const navSections = [
+    { className: 'members', title: 'Members', key: 'members' },
+    { className: 'typedefs', title: 'Typedefs', key: 'typedefs' },
+    { className: 'methods', title: 'Methods', key: 'methods' },
+    { className: 'events', title: 'Events', key: 'events' }
+];
+?>
+<div class="navigation">
+    <h3 class="applicationName"><a href="index.html"><?js= env.conf.templates.applicationName ?></a></h3>
+    <p class="applicationSubtitle"><?js= env.conf.templates.applicationSubtitle || 'API documentation' ?></p>
+
+    <div class="search">
+        <input id="search" type="text" placeholder="Find a symbol">
+    </div>
+    <ul class="list">
+        <li class="item" data-name="global">
+            <span class="title">
+                <?js= self.linkto("global", "[ top level ]") ?>
+                <span class="static">static</span>
+            </span>
+        </li>
+    <?js
+    this.nav.forEach(function (item) {
+    ?>
+        <li class="item" data-name="<?js= item.longname ?>">
+            <span class="title">
+                <?js= self.linkto(item.longname, item.longname) ?>
+                <?js if (item.type === 'namespace') { ?>
+                <span class="static">static</span>
+                <?js } ?>
+            </span>
+            <?js
+                navSections.forEach(function(section) {
+                    const sectionItems = item[section.key];
+            ?>
+            <ul class="<?js= section.className ?> itemMembers">
+                <?js if (sectionItems.length) { ?>
+                <span class="subtitle"><?js= section.title ?></span>
+                <?js sectionItems.forEach(function (v) { ?>
+                    <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
+                <?js }); ?>
+                <?js } ?>
+            </ul>
+            <?js }); ?>
+        </li>
+    <?js }); ?>
+    </ul>
+</div>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <?js
+        const templates = env.conf.templates;
+        const meta = templates.meta || {};
+        const openGraph = templates.openGraph;
+    ?>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><?js= (meta.title || title) ?></title>
+    <?js if (meta.description) { ?><meta name="description" content="<?js= meta.description ?>"><?js } ?>
+    <?js if (meta.keyword) { ?>
+        <meta name="keywords" content="<?js= meta.keyword ?>">
+    <?js } ?>
+    <?js if (openGraph) { ?>
+    <meta property="og:title" content="<?js= openGraph.title ?>">
+    <meta property="og:type" content="<?js= openGraph.type ?>">
+    <meta property="og:image" content="<?js= openGraph.image ?>">
+    <?js if (openGraph.site_name) { ?><meta property="og:site_name" content="<?js= openGraph.site_name ?>"><?js } ?>
+    <meta property="og:url" content="<?js= openGraph.url ?>">
+    <?js } ?>
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/docs.css">
+</head>
+<body>
+<div id="wrap">
+    <?js= this.partial('navigation.tmpl', this) ?>
+    <div class="main">
+        <h1 class="page-title" data-filename="<?js= filename ?>"><?js= title ?></h1>
+        <?js= content ?>
+    </div>
+</div>
+<script>prettyPrint();</script>
+<script src="scripts/main.js"></script>
+</body>
+</html>

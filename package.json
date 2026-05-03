@@ -1,0 +1,25 @@
+{
+  "name": "@protobufjs/jsdoc-template",
+  "version": "0.1.0",
+  "description": "JSDoc template for protobuf.js API documentation.",
+  "license": "MIT",
+  "private": true,
+  "main": "publish.js",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "publish.js",
+    "static/**",
+    "tmpl/**"
+  ],
+  "scripts": {
+    "check": "node --check publish.js && node --check static/scripts/main.js",
+    "test": "npm run check"
+  },
+  "peerDependencies": {
+    "jsdoc": "^4.0.5"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  }
+}
