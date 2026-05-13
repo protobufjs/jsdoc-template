@@ -31,7 +31,7 @@ const self = this;
     <?js } ?>
 
     <?js if (kind === 'event' && data.type && data.type.names) {?>
-        <h5>Type:</h5>
+        <h5 class="subsection-title">Type:</h5>
         <ul>
             <li>
                 <?js= self.partial('type.tmpl', data.type.names) ?>
@@ -40,56 +40,56 @@ const self = this;
     <?js } ?>
     
     <?js if (data['this']) { ?>
-        <h5>This:</h5>
-        <ul><li><?js= this.linkto(data['this'], data['this']) ?></li></ul>
+        <h5 class="subsection-title">This:</h5>
+        <ul class="detail-list"><li><?js= this.linkto(data['this'], data['this']) ?></li></ul>
     <?js } ?>
     
     <?js if (data.params && params.length) { ?>
+        <h5 class="subsection-title">Parameters:</h5>
         <?js= this.partial('params.tmpl', params) ?>
     <?js } ?>
     
     <?js= this.partial('details.tmpl', data) ?>
     
     <?js if (data.fires && fires.length) { ?>
-    <h5>Fires:</h5>
+    <h5 class="subsection-title">Fires:</h5>
     <ul><?js fires.forEach(function(f) { ?>
         <li><?js= self.linkto(f) ?></li>
     <?js }); ?></ul>
     <?js } ?>
 
     <?js if (data.listens && listens.length) { ?>
-    <h5>Listens to Events:</h5>
+    <h5 class="subsection-title">Listens to Events:</h5>
     <ul><?js listens.forEach(function(f) { ?>
         <li><?js= self.linkto(f) ?></li>
     <?js }); ?></ul>
     <?js } ?>
 
     <?js if (data.listeners && listeners.length) { ?>
-    <h5>Listeners of This Event:</h5>
+    <h5 class="subsection-title">Listeners of This Event:</h5>
     <ul><?js listeners.forEach(function(f) { ?>
         <li><?js= self.linkto(f) ?></li>
     <?js }); ?></ul>
     <?js } ?>
     
     <?js if (data.exceptions && exceptions.length) { ?>
-    <h5>Throws:</h5>
-    <?js if (exceptions.length > 1) { ?><ul><?js
-        exceptions.forEach(function(r) { ?>
-            <li><?js= self.partial('exceptions.tmpl', r) ?></li>
-        <?js });
-    ?></ul><?js } else {
-        exceptions.forEach(function(r) { ?>
-            <?js= self.partial('exceptions.tmpl', r) ?>
-        <?js });
-    } } ?>
+    <h5 class="subsection-title">Throws:</h5>
+    <table class="params exception-table">
+        <tbody>
+    <?js exceptions.forEach(function(r) { ?>
+        <?js= self.partial('exceptions.tmpl', r) ?>
+    <?js }); ?>
+        </tbody>
+    </table>
+    <?js } ?>
     
     <?js if (data.returns && returns.length) { ?>
-    <h5>Returns:</h5>
+    <h5 class="subsection-title">Returns:</h5>
     <?js= self.partial('returns.tmpl', data.returns) ?>
     <?js } ?>
     
     <?js if (data.examples && examples.length) { ?>
-        <h5>Example<?js= examples.length > 1? 's':'' ?></h5>
+        <h5 class="subsection-title">Example<?js= examples.length > 1? 's':'' ?>:</h5>
         <?js= this.partial('examples.tmpl', examples) ?>
     <?js } ?>
 </dd>

@@ -57,7 +57,7 @@ function mangleType(type) {
             return $1 + "[]";
         });
     } while (found);
-    type = type.replace(/(Object|Promise)\./g, '$1');
+    type = type.replace(/(Object|Promise)\.(?=&lt;)/g, '$1');
     return type;
 }
 

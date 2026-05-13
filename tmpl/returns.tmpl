@@ -46,14 +46,7 @@ returns.forEach(function (ret, i) {
 ?>
 
 <?js if (hasType) { ?>
-<table class="params">
-    <thead>
-    <tr>
-        <?js if (hasName) { ?><th>Name</th><?js } ?>
-        <th>Type</th>
-        <th class="last">Description</th>
-    </tr>
-    </thead>
+<table class="returns return-table">
     <tbody>
     <?js
         const self = this;

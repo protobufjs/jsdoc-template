@@ -10,15 +10,20 @@
 <?js } else { ?>
 
 <section>
+<?js
+    const heading = doc.name || (title === 'Global' ? 'Top Level' : title);
+    const hasHeaderSource = doc.kind !== 'class' && doc.meta;
+?>
     
-<header>
-    <h2><?js if (doc.ancestors && doc.ancestors.length) { ?>
-        <span class="ancestors"><?js= doc.ancestors.join('') ?></span>
-    <?js } ?>
-    <?js= doc.name ?>
-    <?js if (doc.variation) { ?>
+<header<?js if (hasHeaderSource) { ?> class="has-source"<?js } ?>>
+    <h2><?js if (doc.ancestors && doc.ancestors.length) { ?><span class="ancestors"><?js= doc.ancestors.join('') ?></span><?js } ?><?js= heading ?><?js if (doc.variation) { ?>
         <sup class="variation"><?js= doc.variation ?></sup>
     <?js } ?></h2>
+    <?js if (hasHeaderSource) { ?>
+        <div class="tag-source">
+            <?js= self.linkto(doc.meta.filename) ?>, <?js= self.linkto(doc.meta.filename, 'line ' + doc.meta.lineno, null, 'L' + doc.meta.lineno) ?>
+        </div>
+    <?js } ?>
     <?js if (doc.classdesc) { ?>
         <div class="class-description"><?js= doc.classdesc ?></div>
     <?js } ?>
@@ -48,7 +53,7 @@
         <?js= self.partial('details.tmpl', doc) ?>
         
         <?js if (doc.examples && doc.examples.length) { ?>
-            <h3>Example<?js= doc.examples.length > 1? 's':'' ?></h3>
+            <h3 class="subsection-title">Example<?js= doc.examples.length > 1? 's':'' ?>:</h3>
             <?js= self.partial('examples.tmpl', doc.examples) ?>
         <?js } ?>
     <?js } ?>

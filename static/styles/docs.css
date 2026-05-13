@@ -206,6 +206,17 @@ pre,
 .main h2 {
   font-size: 24px;
 }
+.main header.has-source {
+  position: relative;
+}
+.main header.has-source > h2 {
+  padding-right: 220px;
+}
+.main header.has-source > .tag-source {
+  position: absolute;
+  top: 8px;
+  right: 0;
+}
 .main h3 {
   margin: 24px 0 12px;
   font-size: 20px;
@@ -218,7 +229,8 @@ pre,
 }
 .main p,
 .main dd,
-.main .description {
+.main .description,
+.main .detail-message {
   color: #1f2328;
   font-size: 14px;
   line-height: 1.55;
@@ -255,6 +267,13 @@ pre,
   border-bottom: 1px solid #d8dee4;
   color: #1f2328;
   font-size: 18px;
+}
+.main dt + dd h5.subsection-title {
+  margin: 16px 0 8px;
+  padding-bottom: 0;
+  border-bottom: 0;
+  color: #1f2328;
+  font-size: 14px;
 }
 .main .summary-list {
   display: grid;
@@ -324,9 +343,8 @@ pre,
   color: #6e7781;
   vertical-align: middle;
 }
-.main .tag-deprecated {
-  display: inline-block;
-  font-size: 12px;
+.main .detail-message {
+  margin: 0 0 16px;
 }
 .main .nameContainer .inherited {
   display: inline-block;
@@ -339,13 +357,15 @@ pre,
   font-size: 11px;
   font-weight: 500;
 }
+.main .tag-source {
+  color: #57606a;
+  font-size: 12px;
+  font-weight: 400;
+}
 .main .nameContainer .tag-source {
   position: absolute;
   top: 18px;
   right: 16px;
-  color: #57606a;
-  font-size: 12px;
-  font-weight: 400;
 }
 .main dt + dd {
   margin: 0 0 16px;
@@ -353,6 +373,13 @@ pre,
   border: 1px solid #d8dee4;
   border-top: 0;
   border-radius: 0 0 6px 6px;
+}
+.main .detail-list {
+  margin: 0 0 16px;
+}
+.main article .detail-list > li {
+  margin: 4px 0;
+  list-style-type: none;
 }
 .main table {
   display: table;
@@ -373,8 +400,28 @@ pre,
   background: #f6f8fa;
   font-weight: 600;
 }
+.main table.property-table,
+.main table.parameter-table,
+.main table.exception-table,
+.main table.return-table {
+  border: 0;
+  border-radius: 0;
+}
+.main table.property-table td,
+.main table.parameter-table td,
+.main table.exception-table td,
+.main table.return-table td {
+  padding: 4px 10px 4px 0;
+  border: 0;
+}
 .main table .name {
-  width: 150px;
+  width: 140px;
+}
+.main table .name code {
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+  font-size: inherit;
 }
 .main table .default {
   width: 80px;
@@ -384,6 +431,9 @@ pre,
   width: 140px;
   color: #57606a;
   font-size: 12px;
+}
+.main table .attributes,
+.main table .param-type {
   white-space: nowrap;
 }
 .main table .description {
@@ -392,11 +442,14 @@ pre,
 .main table .description p {
   margin: 0;
 }
+.main table.property-table .description p:first-of-type,
+.main table.parameter-table .description p:first-of-type,
+.main table.exception-table .description p:first-of-type {
+  display: inline;
+}
 .main table .nullable,
 .main table .repeatable,
-.main table .optional,
-.main .important,
-.main dt.tag-todo {
+.main table .optional {
   display: inline-block;
   margin-right: 5px;
   padding: 0 6px;
@@ -477,5 +530,12 @@ footer {
   .main .nameContainer .tag-source {
     position: static;
     margin-top: 8px;
+  }
+  .main header.has-source > h2 {
+    padding-right: 0;
+  }
+  .main header.has-source > .tag-source {
+    position: static;
+    margin: -8px 0 16px;
   }
 }
