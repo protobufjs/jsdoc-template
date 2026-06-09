@@ -363,6 +363,7 @@ function buildNavItem(type, item) {
  * @param {array<object>} members.mixins
  * @param {array<object>} members.modules
  * @param {array<object>} members.namespaces
+ * @param {array<object>} members.interfaces
  * @param {array<object>} members.tutorials
  * @param {array<object>} members.events
  * @return {string} The HTML for the navigation sidebar.
@@ -371,7 +372,8 @@ function buildNav(members) {
     const nav = [];
     const sections = [
         { type: 'namespace', items: members.namespaces },
-        { type: 'class', items: members.classes }
+        { type: 'class', items: members.classes },
+        { type: 'interface', items: members.interfaces }
     ];
 
     sections.forEach(function(section) {

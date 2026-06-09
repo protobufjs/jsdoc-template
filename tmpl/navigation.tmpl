@@ -6,6 +6,12 @@ const navSections = [
     { className: 'methods', title: 'Methods', key: 'methods' },
     { className: 'events', title: 'Events', key: 'events' }
 ];
+const navTypeTitles = {
+    namespace: 'Namespaces',
+    class: 'Classes',
+    interface: 'Interfaces'
+};
+let currentNavType = null;
 ?>
 <div class="navigation">
     <h3 class="applicationName"><a href="index.html"><?js= env.conf.templates.applicationName ?></a></h3>
@@ -17,12 +23,22 @@ const navSections = [
     <ul class="list">
         <li class="item" data-name="global">
             <span class="title">
-                <?js= self.linkto("global", "[ top level ]") ?>
+                <?js= self.linkto("global", "Top Level") ?>
                 <span class="static">static</span>
             </span>
         </li>
     <?js
     this.nav.forEach(function (item) {
+        if (item.type !== currentNavType) {
+            currentNavType = item.type;
+            if (navTypeTitles[item.type]) {
+    ?>
+        <li class="item nav-section">
+            <span class="subtitle"><?js= navTypeTitles[item.type] ?></span>
+        </li>
+    <?js
+            }
+        }
     ?>
         <li class="item" data-name="<?js= item.longname ?>">
             <span class="title">
