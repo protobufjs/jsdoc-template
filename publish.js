@@ -400,6 +400,7 @@ function groupByLongname(items) {
 function generateDocletPages(members) {
     const outputSections = [
         { title: 'Class', items: members.classes },
+        { title: 'Interface', items: members.interfaces },
         { title: 'Module', items: members.modules },
         { title: 'Namespace', items: members.namespaces },
         { title: 'Mixin', items: members.mixins },
